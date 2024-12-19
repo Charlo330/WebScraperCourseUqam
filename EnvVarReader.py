@@ -15,4 +15,6 @@ course_acronym = os.getenv("COURSE_ACRONYM")
 course_name = os.getenv("COURSE_NAME")
 class_url = os.getenv("COURSE_URL")
 
+session = os.getenv("SESSION")
+
 time_sleep = int(os.getenv("TIME_INTERVAL"))

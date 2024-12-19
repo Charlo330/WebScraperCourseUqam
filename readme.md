@@ -55,10 +55,15 @@ COURSE_URL=https://etudier.uqam.ca/cours?sigle=inf1132&p=7316
 COURSE_ACRONYM=INF1132
 COURSE_NAME="Mathématiques pour l'informatique"
 
+# Session name written in the tab (ex: Horaire - Automne 2024)
+SESSION="Horaire - Automne 2024"
+
 # Time interval in seconds
 TIME_INTERVAL=3
 ```
-
+**The session variable is to select the session wanted. The text must be the 
+same as the one in the blue tab.**
+![tabPicture](assets/tabPicture.png)
 ### Running the Project
 Run the Python script using the following command:
 

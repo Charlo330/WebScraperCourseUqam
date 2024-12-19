@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import EnvVarReader
 
 class_url = EnvVarReader.class_url
+session = EnvVarReader.session
 
 def find_group(pw):
     # create browser instance
@@ -18,7 +19,7 @@ def find_group(pw):
     if page.is_visible("text=Préférences en matière de témoins"):
         page.click("text=Autoriser les témoins")
 
-    page.click("text=Horaire - Hiver 2025")
+    page.click("text=" + session)
     html = page.content()
     soup = BeautifulSoup(html, "html.parser")
     cours = soup.find_all("div", {"role": "tabpanel", "class": "active"})
