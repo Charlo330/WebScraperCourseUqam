@@ -19,10 +19,17 @@ em['Subject'] = "UQAM - " + course_acronym + " - Class available"
 em['From'] = email_sender
 em['To'] = email_receiver
 
-def send(message):
+def send_group(message):
     with smtplib.SMTP(smtp_server, smtp_port) as smtp:
         message = "We found class/es available for this course : \n" + course_name + "\n\n" + message
 
+        smtp.starttls()
+        smtp.login(email_sender, email_pass)
+        em.attach(MIMEText(message, 'plain'))
+        smtp.sendmail(email_sender, email_receiver, em.as_string())
+
+def send_error(message):
+    with smtplib.SMTP(smtp_server, smtp_port) as smtp:
         smtp.starttls()
         smtp.login(email_sender, email_pass)
         em.attach(MIMEText(message, 'plain'))

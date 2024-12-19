@@ -18,15 +18,23 @@ def parse_groups(groups_list):
 with (sync_playwright() as pw):
     found = False
     counter = 0
-    counter += 1
+    error_counter = 0
 
     print(f"~-~~-~~-~~-~~-~~-~~-~~-~~-~~-~~-~~-~~-~~-~~-~~-~~-~~-~")
     while not found:
-        groups = pwFindContent.find_group(pw)
+        try:
+            groups = pwFindContent.find_group(pw)
+            error_counter = 0
+        except:
+            error_counter += 1
+            print(f"Error: {error_counter}", end='\r')
         counter += 1
 
         if groups:
-            EmailSender.send(parse_groups(groups))
+            EmailSender.send_group(parse_groups(groups))
+            found = True
+        elif error_counter > 3:
+            EmailSender.send_error("An error occurred, the bot will stop.")
             found = True
         else:
             print(f"Running for the course - {course_acronym}: {counter}", end='\r')
